@@ -30,12 +30,12 @@ class UserProfileManager(BaseUserManager):
 
 
 
-class UserProfile(AbstractBaseUser):
+class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Model definition for UserProfile."""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
-    is_stuff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     objects=UserProfileManager()
 
@@ -52,4 +52,4 @@ class UserProfile(AbstractBaseUser):
 
     def __str__(self):
         """Unicode representation of UserProfile."""
-        self.email
+        return self.email
